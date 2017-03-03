@@ -1,0 +1,61 @@
+<!--
+  Generated template for the Deliverall page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar>
+
+    <ion-title>Deliver All</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="close()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content padding>
+
+  <button ion-button  (click)="getLocation()">Refresh Location</button>
+  <ion-spinner *ngIf="loader"></ion-spinner>
+  <div *ngIf="!loader">
+    <p>Latitude : {{lat}}</p>
+    <p>Latitude : {{lng}}</p>
+  </div>
+
+  <ion-list *ngIf="!loader">
+    <ion-item>
+      <ion-label color="primary" fixed>End Milage</ion-label>
+      <ion-input type="tel" placeholder="End Milage" [(ngModel)]="endmilage"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" fixed>Charges</ion-label>
+      <ion-input type="tel" placeholder="Charges" [(ngModel)]="charges"></ion-input>
+    </ion-item>
+
+
+    <ion-item>
+      <ion-label color="primary" fixed>Discounts</ion-label>
+      <ion-input type="tel" placeholder="Discounts" [(ngModel)]="discounts"></ion-input>
+    </ion-item>
+
+
+
+
+    <ion-item>
+      <ion-label color="primary" fixed>Paid Amount</ion-label>
+      <ion-input type="tel" placeholder="Paid Amount" [(ngModel)]="paidamount"></ion-input>
+    </ion-item>
+
+
+<button ion-button (click)="update()" color="secondary">Save</button>
+  </ion-list>
+
+
+
+
+</ion-content>

@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Welcome</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+
+  <ion-refresher (ionRefresh)="getVehicles($event)">
+    <ion-refresher-content
+      pullingIcon="arrow-dropdown"
+      pullingText="Pull to refresh"
+      refreshingSpinner="circles"
+      refreshingText="Please Wait...">
+    </ion-refresher-content>
+  </ion-refresher>
+
+
+
+ <div style="text-align:center;" *ngIf="loader">
+   <ion-spinner>
+   </ion-spinner>
+   <h2>Please Wait...</h2>
+ </div>
+
+
+  <ion-list>
+    <ion-item *ngFor="let item of vehicles">
+      <button ion-button icon-left full  (click)="gotoinvoice(item.RegNo)">
+        <ion-icon ios="ios-car-outline" md="ios-car-outline"></ion-icon>
+
+        {{item.RegNo}}
+      </button>
+    </ion-item>
+  </ion-list>
+
+
+</ion-content>
