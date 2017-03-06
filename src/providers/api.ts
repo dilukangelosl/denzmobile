@@ -60,7 +60,7 @@ export class Api {
   finishtransport(invoiceno:any , endmilage:any,charges:any,discount:any,paidamount:any) {
 
     return new Promise((resolve,reject) => {
-      this.http.post(this.apiUrl+"finishtransport", {invoiceno:invoiceno,endmilage:endmilage, charges:charges,discount:discount,paidamount:paidamount}).map(res => res.json()).subscribe(data => {
+      this.http.post(this.apiUrl+"finishtransport", {invoiceid:invoiceno,endmilage:endmilage, charges:charges,discount:discount,paidamount:paidamount}).map(res => res.json()).subscribe(data => {
         resolve(data)
       });
     })
@@ -98,7 +98,7 @@ export class Api {
   addlocation(delid:any, lat:any,lng:any) {
 
     return new Promise((resolve,reject) => {
-      this.http.post(this.apiUrl+"viewlocation", {delid:delid,lat:lat,lng:lng}).map(res => res.json()).subscribe(data => {
+      this.http.post(this.apiUrl+"addlocation", {delid:delid,lat:lat,lng:lng}).map(res => res.json()).subscribe(data => {
         resolve(data)
       });
     })
