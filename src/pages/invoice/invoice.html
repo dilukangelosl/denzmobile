@@ -130,7 +130,9 @@
 
     </ion-list>
 
-    <button ion-button full color="secondary" (click)="showConfirm()">Deliver All</button>
+
+    <button ion-button full color="secondary" (click)="showConfirm()" *ngIf="!show">Deliver All</button>
+  <button ion-button full color="secondary" (click)="viewLocation()" *ngIf="show">View Location</button>
   </ion-card>
 
 

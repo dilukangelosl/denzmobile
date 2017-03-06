@@ -6,6 +6,8 @@ import { Page2 } from '../pages/page2/page2';
 import {Api} from  '../providers/api'
 import {InvoicePage} from '../pages/invoice/invoice';
 import  {DeliverallPage} from '../pages/deliverall/deliverall';
+import {SearchPage} from '../pages/search/search';
+import {MapPage} from '../pages/map/map'
 
 @NgModule({
   declarations: [
@@ -13,7 +15,9 @@ import  {DeliverallPage} from '../pages/deliverall/deliverall';
     Page1,
     Page2,
     InvoicePage,
-    DeliverallPage
+    DeliverallPage,
+    SearchPage,
+    MapPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -24,7 +28,9 @@ import  {DeliverallPage} from '../pages/deliverall/deliverall';
     Page1,
     Page2,
     InvoicePage,
-    DeliverallPage
+    DeliverallPage,
+    SearchPage,
+    MapPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler},Api]
 })

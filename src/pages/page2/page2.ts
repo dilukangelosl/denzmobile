@@ -40,7 +40,7 @@ export class Page2 {
   gotoinvoice(invoiceno:any){
 
     console.log("clicked");
-    this.navCtrl.push(InvoicePage,{id:invoiceno});
+    this.navCtrl.push(InvoicePage,{id:invoiceno, type:1});
 
   }
 

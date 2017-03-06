@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams ,AlertController , ModalController} from 'ionic-angular';
+import { NavController, NavParams ,AlertController , ModalController, LoadingController} from 'ionic-angular';
 import {Api} from '../../providers/api';
-import {DeliverallPage} from '../deliverall/deliverall'
+import {DeliverallPage} from '../deliverall/deliverall';
+import {MapPage} from '../map/map';
 /*
   Generated class for the Invoice page.
 
@@ -18,25 +19,80 @@ export class InvoicePage {
   products:any;
   invoice:any;
   loader:any = false;
-  constructor(public navCtrl: NavController, public navParams: NavParams, public api:Api, public alertCtrl:AlertController, public modalCtrl:ModalController) {
+  type:any;
+  show:boolean ;
+  constructor(public navCtrl: NavController, public navParams: NavParams, public api:Api, public alertCtrl:AlertController, public modalCtrl:ModalController,public loadingCtrl: LoadingController) {
 
    this.id = this.navParams.get("id");
+   this.type = this.navParams.get("type");
 
 
+   if(this.type == 0 ){
+
+     this.show = true ;
+   }
+   else {
+
+     this.show= false;
+   }
    this.products =  this.api.getInvoice(this.id).then((res) => {
 
 
+     if(res["result"].length > 1){
+       this.products = res["result"];
+       this.invoice = this.products[0];
+       this.loader = true;
+     }
+     else {
+       navCtrl.pop();
+     }
 
-     this.products = res["result"];
-     this.invoice = this.products[0];
-     this.loader = true;
 
-     console.log(this.invoice);
+/*
+
+     */
+
+
    })
 
   }
 
 
+
+  viewLocation(){
+
+    let loading = this.loadingCtrl.create({
+      content: 'Checking for invoice Location, Please wait...'
+    });
+
+    loading.present();
+
+    this.api.viewlocation(this.id).then((res) => {
+
+      if(res["result"].length > 0){
+console.log(res["result"]);
+        //open location
+        loading.dismiss();
+
+        this.navCtrl.push(MapPage,{data:res["result"]});
+
+
+      }
+      else {
+
+        //alert
+        loading.dismiss();
+        let alert = this.alertCtrl.create({
+          title: 'Sorry',
+          subTitle: 'Invoice doesnt have a Location',
+          buttons: ['Dismiss']
+        });
+        alert.present();
+      }
+    })
+
+
+  }
 
   round(num:any){
     return Math.round(parseInt(num));
