@@ -105,4 +105,22 @@ export class Api {
   }
 
 
+  getallinvoices(){
+    return new Promise((resolve,reject) => {
+      this.http.get(this.apiUrl+"getinvoices").map(res => res.json()).subscribe(data => {
+        resolve(data)
+      });
+    })
+  }
+
+  searchinvoice(search:any){
+    return new Promise((resolve,reject) => {
+      this.http.post(this.apiUrl+"invoicesearch",{search:search}).map(res => res.json()).subscribe(data => {
+        resolve(data)
+      });
+    })
+
+  }
+
+
 }
